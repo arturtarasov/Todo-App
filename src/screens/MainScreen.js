@@ -14,7 +14,7 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
       )}
     />
   );
-  if (content.length === 0) {
+  if (todos.length === 0) {
     content = (
       <View style={styles.imgWrap}>
         <Image
