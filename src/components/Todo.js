@@ -7,7 +7,9 @@ export const Todo = ({ todo, onRemove, onOpen }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      onPress={() => onOpen(todo.id)}
+      onPress={() => {
+        onOpen(todo.id);
+      }}
       onLongPress={() => onRemove(todo.id)}
     >
       <View style={styles.todo}>
