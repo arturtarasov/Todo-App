@@ -70,17 +70,24 @@ export const TodoState = ({ children }) => {
 
   const fetchTodos = async () => {
     showLoader()
-    const response = await fetch(
-      "https://todo-app-react-native-a3083.firebaseio.com/todos.json",
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-    const data = await response.json();
-    const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
-    dispatch({ type: FETCH_TODOS, todos });
-    hideLoader()
+    clearError()
+    try {
+      const response = await fetch(
+        "https://todo-app-react-native-a3083.firebaseio.com/todos.json",
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+      const data = await response.json();
+      const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
+      dispatch({ type: FETCH_TODOS, todos });
+    } catch(e) {
+      showError('Что-то пошло не так...')
+      console.log(e)
+    } finally {
+      hideLoader()
+    }
   };
   return (
     <TodoContext.Provider
