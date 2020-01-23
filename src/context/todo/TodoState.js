@@ -69,6 +69,7 @@ export const TodoState = ({ children }) => {
   const clearError = () => dispatch({ type: CLEAR_ERROR });
 
   const fetchTodos = async () => {
+    showLoader()
     const response = await fetch(
       "https://todo-app-react-native-a3083.firebaseio.com/todos.json",
       {
@@ -79,6 +80,7 @@ export const TodoState = ({ children }) => {
     const data = await response.json();
     const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
     dispatch({ type: FETCH_TODOS, todos });
+    hideLoader()
   };
   return (
     <TodoContext.Provider
