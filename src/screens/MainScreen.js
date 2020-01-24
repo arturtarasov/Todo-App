@@ -3,12 +3,12 @@ import { Dimensions, FlatList, Image, StyleSheet, View } from 'react-native';
 
 import { AddTodo } from '../components/AddTodo';
 import { Todo } from '../components/Todo';
+import { AppButton } from '../components/ui/AppButton';
+import { AppLoader } from '../components/ui/AppLoader';
+import { AppText } from '../components/ui/AppText';
 import { ScreenContext } from '../context/screen/screenContext';
 import { TodoContext } from '../context/todo/todoContext';
 import { THEME } from '../theme';
-import { AppLoader } from '../components/ui/AppLoader';
-import { AppText } from '../components/ui/AppText';
-import { AppButton } from '../components/ui/AppButton';
 
 export const MainScreen = () => {
   const { addTodo, todos, removeTodo, fetchTodos, error, loading } = useContext(
@@ -39,7 +39,7 @@ export const MainScreen = () => {
   });
 
   if (loading) {
-    return <AppLoader />
+    return <AppLoader></AppLoader>;
   }
 
   if (error) {
@@ -48,7 +48,7 @@ export const MainScreen = () => {
         <AppText style={styles.error}>{error}</AppText>
         <AppButton onPress={loadTodos}>Повторить</AppButton>
       </View>
-    )
+    );
   }
 
   let content = (
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   center: {
     flex: 1,
     justifyContent: "center",
-    alignItems: 'center'
+    alignItems: "center"
   },
   error: {
     fontSize: 20,

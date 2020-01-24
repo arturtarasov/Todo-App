@@ -21,7 +21,10 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.arturtarasov.todo_app"
+      "package": "com.arturtarasov.todo_app",
+      "versionCode": 2,
+      "permissions": [],
+      "icon": "./my-icon.png"
     }
   }
 }
